@@ -1,66 +1,66 @@
 <style>
-button{
-width:10%;
+    button {
+        width: 10%;
 
-}
-*{
-  text-align: center;
-  margin: auto;
-  
-  border: 3px;
-    padding: 10px;
-}
+    }
 
+    * {
+        text-align: center;
+        margin: auto;
+
+        border: 3px;
+        padding: 10px;
+    }
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script>
-var clicked = 0;
-var nextbutton = 3;
-var lose = 0;
-function myFunction(clicked) {
+    var clicked = 0;
+    var nextbutton = 3;
+    var lose = 0;
 
-console.log(clicked + ' ' + nextbutton);
-var person = [];
-//3 0 1 2
+    function myFunction(clicked) {
 
-person[3] = 'Probably the best and worst trait of human evolution is:';
-person[0] = 'Self consciousness';
-person[1] = 'We become aware of so much ';
-person[2] = 'But realize we are aware of so little ...   YOU WIN!';
+        console.log(clicked + ' ' + nextbutton);
+        var person = [];
+        //3 0 1 2
 
-if(clicked == nextbutton){
+        person[3] = 'Probably the best and worst trait of human evolution is:';
+        person[0] = 'Self consciousness';
+        person[1] = 'We become aware of so much ';
+        person[2] = 'But realize we are aware of so little ...   YOU WIN!';
 
-if(clicked == 3){
-    document.getElementById('x').innerHTML = person[clicked];
-nextbutton =0;
-}else if(clicked == 0){
-    document.getElementById('x').innerHTML = person[clicked];
-nextbutton=1;
-}else if(clicked == 1){
-    document.getElementById('x').innerHTML = person[clicked];
-nextbutton=2;
-}
-else if(clicked == 2){
- document.getElementById('x').innerHTML = person[clicked];
- nextbutton=2;
-}
-console.log(clicked + ' ' + nextbutton);
-}else{
-   
-    console.log(clicked);
-    lose++;
-document.getElementById('x').innerHTML = "fail case, lose counter: " + lose;
-nextbutton = 3;
-}
-}
+        if (clicked == nextbutton) {
+
+            if (clicked == 3) {
+                document.getElementById('x').innerHTML = person[clicked];
+                nextbutton = 0;
+            } else if (clicked == 0) {
+                document.getElementById('x').innerHTML = person[clicked];
+                nextbutton = 1;
+            } else if (clicked == 1) {
+                document.getElementById('x').innerHTML = person[clicked];
+                nextbutton = 2;
+            } else if (clicked == 2) {
+                document.getElementById('x').innerHTML = person[clicked];
+                nextbutton = 2;
+            }
+            console.log(clicked + ' ' + nextbutton);
+        } else {
+
+            console.log(clicked);
+            lose++;
+            document.getElementById('x').innerHTML = "fail case, lose counter: " + lose;
+            nextbutton = 3;
+        }
+    }
 </script>
 <center>
-<button onclick="myFunction(0)"> </button>
-<button onclick="myFunction(1)"> </button>
-<button onclick="myFunction(2)"> </button>
-<button onclick="myFunction(3)"> </button>
+    <button onclick="myFunction(0)"> </button>
+    <button onclick="myFunction(1)"> </button>
+    <button onclick="myFunction(2)"> </button>
+    <button onclick="myFunction(3)"> </button>
 
 
 
-<div id="x"></div>
-</div>
+    <div id="x"></div>
+    </div>
