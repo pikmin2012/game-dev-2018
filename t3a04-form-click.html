@@ -1,0 +1,51 @@
+<html>
+
+<head>
+
+</head>
+
+
+<body>
+    Clickables wow <br> password <input id="pass" type="password" value="Your password isnt that secure" onfocusout="{document.getElementById('textarea').value = (getElementById('pass').value) + ' :/ that wasnt that secure' }"><br> radio button <input type="radio"><input type="radio"> <br> check box <input type="checkbox"><br> submit <input type="sumbit"><br> Reset box <input type="reset"><br> Range <input type="range" value="3" Max="10"> <br> Text box <input id="text01" width="200" type="text" value="You will never beable to edit me :P" onfocus="{getElementById('text01').blur()}"> <br> File box <input id="file01" type="file"> <br>
+
+
+
+    <textarea id="textarea" rows="5" cols="70" nowrap> wowowowowo </textarea><br>
+
+
+    <select size="1">
+<option>
+<option> boi
+<option> cheese
+
+</select>
+    <script>
+        document.addEventListener("mousemove", function(event) {
+            myFunction(event);
+            //console.log(event);
+        });
+
+        function myFunction(event) {
+            var x = event.clientX; // Get the horizontal coordinate
+            var y = event.clientY; // Get the vertical coordinate
+            var cx = parseInt(document.getElementById('chase').style.left);
+            var cy = parseInt(document.getElementById('chase').style.top);
+
+            console.log(x + ' ' + y + ' ' + cx + ' ' + cy);
+            if (x > cx) {
+                if (x - cx < 200) {
+                    console.log("debug");
+                    document.getElementById('chase').style.left -= 1;
+                }
+
+            }
+
+        }
+    </script>
+    <button id="chase" style="position: absolute;top:500;left:500;">chase me</button>
+
+</body>
+
+
+
+</html>
