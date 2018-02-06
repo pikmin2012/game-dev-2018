@@ -1,15 +1,170 @@
-<button id="button" onclick="wow()"> button </button>
+<button id="button" onclick="wow()"> create 100 my name is jeff numbered</button>
+<br>
+<button id="button2" onclick="{
+a = document.getElementById('a').value;
+b = document.getElementById('b').value;
+if(a>b){
+document.getElementById('output').innerHTML = 'true'
+
+}else {
+
+document.getElementById('output').innerHTML = 'false'
+}
+
+
+}
+">a > b</button><br>
+<button id="button3" onclick="{
+a = document.getElementById('a').value;
+b = document.getElementById('b').value;
+if(a<b){
+document.getElementById('output').innerHTML = 'true'
+
+}else {
+
+document.getElementById('output').innerHTML = 'false'
+}
+
+
+}">a < b</button><br>
+<button id="button4" onclick="{
+a = document.getElementById('a').value;
+b = document.getElementById('b').value;
+if(a==b){
+document.getElementById('output').innerHTML = 'true'
+
+}else {
+
+document.getElementById('output').innerHTML = 'false'
+}
+
+
+}">a == b</button><br>
+<button id="button5" onclick="{
+a = document.getElementById('a').value;
+b = document.getElementById('b').value;
+if(a%2 == 0){
+document.getElementById('output').innerHTML = 'true'
+
+}else {
+
+document.getElementById('output').innerHTML = 'false'
+}
+
+
+}">a == even </button><br>
+<button id="button6" onclick="{
+a = document.getElementById('a').value;
+b = document.getElementById('b').value;
+if(a%2 == 1){
+document.getElementById('output').innerHTML = 'true'
+
+}else {
+
+document.getElementById('output').innerHTML = 'false'
+}
+
+
+}">a == odd </button><br>
+<button id="button7" onclick="{
+a = document.getElementById('a').value;
+b = document.getElementById('b').value;
+if(b%2 == 0){
+document.getElementById('output').innerHTML = 'true'
+
+}else {
+
+document.getElementById('output').innerHTML = 'false'
+}
+
+
+}">b == even</button><br>
+
+<button id="button8" onclick="{
+a = document.getElementById('a').value;
+b = document.getElementById('b').value;
+if(b%2 == 1){
+document.getElementById('output').innerHTML = 'true'
+
+}else {
+
+document.getElementById('output').innerHTML = 'false'
+}
+
+
+}">b == odd </button><br>
+
+
+
+<button id="button9" onclick="{
+a = document.getElementById('a').value;
+b = document.getElementById('b').value;
+if(a<=0){
+document.getElementById('output').innerHTML = 'true'
+
+}else {
+
+document.getElementById('output').innerHTML = 'false'
+}
+
+
+}">a is negative</button><br>
+<button id="button9" onclick="{
+a = document.getElementById('a').value;
+b = document.getElementById('b').value;
+if(b<=0){
+document.getElementById('output').innerHTML = 'true'
+
+}else {
+
+document.getElementById('output').innerHTML = 'false'
+}
+
+
+}">b is negative</button><br>
+
+
+
+value a <input id="a"> </input><br>
+value b <input id="b"> </input><br>
+
+
 
 <script>
 
 function wow(){
 for(x = 0; x<100; x++){
 document.getElementById("output").innerHTML += x + " my name jeff ";
+
+
 }
+
+
 }
+
+
+
+
+
 
 </script>
+<body onload="{
+console.log('debug');
+for(x=0;x<100;x++){
+
+var o = document.getElementById('output');
+
+var oc = o.cloneNode(true);
+oc.id = output.id + x;
+o.parentNode.appendChild(oc);
+
+}
+
+}">
 
 
 
-<div id="output"> </div>
+<div id="output" ></div>
+
+
+
