@@ -1,0 +1,47 @@
+<html>
+
+
+
+
+<head>
+
+    <script>
+	
+		var y = 10;
+		
+		function startloop(){
+			y = parseInt(document.getElementById("input").value);
+			document.getElementById("output").innerHTML = " "
+			for(x=0; x<y; x++){
+				
+				document.getElementById("output").innerHTML +=  x + 1 + ": wow ";
+		
+		
+		
+		
+			}
+		
+		}
+    </script>
+
+
+</head>
+
+
+
+
+<body>
+    <center>
+        <u><h2> Some Cool Loops </h2></u><br>
+        <hr>
+
+
+        <button onclick="startloop();"> start</button>
+
+		Times:<input id="input" > </input><br>
+        <div id="output"> </div>
+
+</body>
+
+
+</html>
