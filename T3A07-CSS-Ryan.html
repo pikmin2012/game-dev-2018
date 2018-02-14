@@ -2,7 +2,14 @@
 	<head>
 	
 		<style>
-			
+		@import url("https://fonts.googleapis.com/css?family=Carrois+Gothic");
+
+		@font-face {
+			font-family: 'matrix-code';
+			src: url('http://neilcarpenter.com/demos/canvas/matrix/font/matrix-code.eot?#iefix') format('embedded-opentype'), 
+       url('http://neilcarpenter.com/demos/canvas/matrix/font/matrix-code.woff') format('woff'), 
+       url('http://neilcarpenter.com/demos/canvas/matrix/font/matrix-code.ttf')  format('truetype')
+			}
 			
 			.bold{
 				font-family: myFirstFont;
@@ -20,6 +27,36 @@
 				counter-increment: section;
 				content: "Section " counter(section) ": ";
 			}
+			h1{
+				border-radius: 25px;
+				border: 1px solid #2474f4;
+				padding: 20px; 
+				width: 200px;
+				height: 40px; 
+				align:center;
+				margin: auto;
+			}
+			
+			.test{
+				position: absolute;
+				writing-mode: vertical-rl;
+				-webkit-writing-mode: vertical-rl;
+				-ms-writing-mode: vertical-rl;
+				 animation: mymove 10s infinite;
+				 white-space: nowrap;
+				  animation-timing-function: linear;
+				  font: normal 12px/14px "Carrois Gothic", sans-serif;
+				  width: 100%;
+    height: 100%;
+    margin: 0;
+    color: #00ff00;
+			
+			}
+			@-webkit-keyframes mymove {
+				from {top: -100px;}
+				to {top: 850px;}
+			 }
+
 			
 			
 			
@@ -27,16 +64,31 @@
 		
 		
 		</style>
-	
+	<script>
+		function loop(){
+		
+		 setTimeout(function () {
+       
+        ;loop();
+    }, 1000);
+		
+		
+		}
+	</script>
 	
 	
 	</head>
 
 
 	<body>
+	<h1 align=center> CSS by Ryan </h1>
 		<div> this is the default div </div>
 		<div class="bold" > This is bold with the bold class </div>
-		
+		<div> links to references: </div><br>
+		<a href="https://www.w3schools.com/cssref/default.asp"> https://www.w3schools.com/cssref/default.asp </a><br>
+		<a href="https://www.csstutorial.net/part-1/basic-css-concepts-part1.php"> https://www.csstutorial.net/part-1/basic-css-concepts-part1.php </a><br>
+		<a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS"> https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS </a><br>
+		<div onload="loop();" nowrap class="test"> wow look at this cool text</div>
 		
 	</body>
 
