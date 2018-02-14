@@ -1,0 +1,45 @@
+<html>
+	<head>
+	
+		<style>
+			
+			
+			.bold{
+				font-family: myFirstFont;
+				src: url(sansation_bold.woff);
+				font-weight: bold;
+			
+			
+			}
+			
+			body {
+				counter-reset: section;
+			}
+
+			h2::before {
+				counter-increment: section;
+				content: "Section " counter(section) ": ";
+			}
+			
+			
+			
+		
+		
+		
+		</style>
+	
+	
+	
+	</head>
+
+
+	<body>
+		<div> this is the default div </div>
+		<div class="bold" > This is bold with the bold class </div>
+		
+		
+	</body>
+
+
+
+</html>
