@@ -12,9 +12,10 @@
 		function startloop(){
 			y = parseInt(document.getElementById("input").value);
 			document.getElementById("output").innerHTML = " "
+			type = document.getElementById("type").value;
 			for(x=0; x<y; x++){
 				
-				document.getElementById("output").innerHTML +=  x + 1 + ": wow ";
+				document.getElementById("output").innerHTML +=  x + 1 + ": " + type;
 		
 		
 		
@@ -36,8 +37,8 @@
         <hr>
 
 
-        <button onclick="startloop();"> start</button>
-
+        <button onclick="startloop();"> start</button><br>
+		What to type:<input id="type" > </input><br>
 		Times:<input id="input" > </input><br>
         <div id="output"> </div>
 
