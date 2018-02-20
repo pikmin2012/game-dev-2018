@@ -1,24 +1,71 @@
 <h2 align=center> pixels by ryan </h2>
 
 
+<style>
+button{
+				border-radius: 25px;
+				border: 1px solid #2474f4;
+				padding: 10px; 
+				width: 50px;
+				height: 50px; 
+				text-align:center;
+				
+			}
+			
+
+</style>
+
+<table border ='0'>
+
+<tr><td>
+
+<button style='transform: rotate(-45deg);' onclick="{
+document.getElementById('myDiv01').style.top = parseInt(document.getElementById('myDiv01').style.top) - 5 + 'px';
+document.getElementById('myDiv01').style.left = parseInt(document.getElementById('myDiv01').style.left) - 5 + 'px';
+}">^</button>
+<td>
+
+<button onclick="{
+document.getElementById('myDiv01').style.top = parseInt(document.getElementById('myDiv01').style.top) - 5 + 'px';
+
+}">up</button>
+<td>
+
+<button style='transform: rotate(45deg);' onclick="{
+document.getElementById('myDiv01').style.top = parseInt(document.getElementById('myDiv01').style.top) - 5 + 'px';
+document.getElementById('myDiv01').style.left = parseInt(document.getElementById('myDiv01').style.left) + 5 + 'px';
+}">^</button>
+<tr><td>
 
 <button onclick="{
 document.getElementById('myDiv01').style.left = parseInt(document.getElementById('myDiv01').style.left) - 5 + 'px';
 
 }">left</button>
+<td><td>
+
+
 <button onclick="{
 document.getElementById('myDiv01').style.left = parseInt(document.getElementById('myDiv01').style.left) + 5 + 'px';
 
 }">right</button>
+
+<tr><td>
+
+<button style='transform: rotate(-135deg);' onclick="{
+document.getElementById('myDiv01').style.top = parseInt(document.getElementById('myDiv01').style.top) + 5 + 'px';
+document.getElementById('myDiv01').style.left = parseInt(document.getElementById('myDiv01').style.left) - 5 + 'px';
+}">^</button>
+<td>
+
 <button onclick="{
 document.getElementById('myDiv01').style.top = parseInt(document.getElementById('myDiv01').style.top) + 5 + 'px';
 
 }">down</button>
-<button onclick="{
-document.getElementById('myDiv01').style.top = parseInt(document.getElementById('myDiv01').style.top) - 5 + 'px';
+<td>
 
-}">up</button>
-
-
-
+<button style='transform: rotate(135deg);' onclick="{
+document.getElementById('myDiv01').style.top = parseInt(document.getElementById('myDiv01').style.top) + 5 + 'px';
+document.getElementById('myDiv01').style.left = parseInt(document.getElementById('myDiv01').style.left) + 5 + 'px';
+}">^</button>
+</table>
 <div id="myDiv01" style="position:absolute;left:5;top:5;" > ryan </div> <br>
