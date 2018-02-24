@@ -1,0 +1,118 @@
+<body onload="{
+   myStorage = localStorage.getItem('myStoredText')
+   alert(myStorage )
+   if(myStorage  != null){
+      document.getElementById('myText1').value = myStorage 
+    }
+}">
+
+<body onunload="{
+   localstorage.setItem('myStoredText',document.getElementById('myText1').value)
+}">   
+
+
+
+<h2>Instructions:</h2>
+Pass: Make several buttons to prove that you can store and retrieve each of these types of variables:<br>
+Word example fred<br> Integer exampe 6<br>  deciaml example 6.34<br> boolean example true<br>
+
+Excellent: Also make buttons to store and retrieve a 1 D array of cool cars<br>
+Note: remember this kind of javascript code<br> 
+<pre>
+
+   myCars = new Array()
+   myCars[1] = 'BMW'
+   myCars[2] = "Smartcar'
+   <hr>
+   <b> You should not use new Array(); do to the reasons stated here <a href="https://coderwall.com/p/h4xm0w/why-never-use-new-array-in-javascript"> https://coderwall.com/p/h4xm0w/why-never-use-new-array-in-javascript </a>
+but instead use myCars = [];
+</pre>
+
+
+<br>
+Teacher Note: Arrays start at zero. I normally have students start at 1 and use a loop that goes from 1 to <= max number in the array.<br>
+Also local storage stores strings, but having students store numbers and booleans interoduces them to these different types of data.
+
+
+
+
+
+
+
+
+<input id="myText1" type=text size=70 value="Write stuff here to be stored for the next time you come back to this site"><br>
+
+<input type="button" value="Store Text" onClick="{
+   localStorage.setItem('myStoredText', document.getElementById('myText1').value)
+   alert(document.getElementById('myText1').value + ' \nHas been stored')
+   document.getElementById('myText1').value = ''
+}">
+
+<input type="button" value="Retrieve Text" onClick="{
+   document.getElementById('myText1').value = localStorage.getItem('myStoredText')
+}"> 
+<br>
+<hr>
+<br>
+
+
+
+<script>
+function store(i){
+
+localStorage.setItem(i, document.getElementById(i).value)
+
+}
+function retrieve(i){
+
+   document.getElementById(i).value = localStorage.getItem(i)
+   alert('your ' + i + ' is ' + localStorage.getItem(i));
+}
+
+var split = [];
+function store2(i){
+
+split = document.getElementById(i).value.split(',');
+console.log(split);
+for(x = 0; x < split.length; x++){
+
+localStorage.setItem(x, split[x]);
+}
+}
+function retrieve2(i){
+alert(i + ' is ' + localStorage.getItem(i-1));
+}
+
+
+
+</script>
+
+
+enter your name here:<input id="name" value='put your name here'></input>
+<button onclick='store("name")' > store</button>
+<button onclick='retrieve("name")'> receive </button>
+<br>
+
+enter your integer here:<input id="integer" value='put your integer here'></input>
+<button onclick='store("integer")' > store</button>
+<button onclick='retrieve("integer")'> receive </button>
+<br>
+enter your decimal here:<input id="decimal" value='put your decimal here'></input>
+<button onclick='store("decimal")' > store</button>
+<button onclick='retrieve("decimal")'> receive </button>
+<br>
+enter your boolean here:<input id="boolean" value='put your boolean here'></input>
+<button onclick='store("boolean")' > store</button>
+<button onclick='retrieve("boolean")'> receive </button>
+<br>
+enter cool cars seperated by commas:<input id="cars" value='put cool cars seperated by commas here'></input>
+<button onclick='store2("cars")' > store</button> 
+enter what car number to receive<input id="carn"></input>
+<button onclick='retrieve2(getElementById("carn").value);'> receive </button>
+<br>
+
+
+
+<br>At the bottom of every page make sure you include the following button:<br>
+
+<input type=button value="Back" style="font-size:25px" onclick="{window.history.back()}"><br><br>
