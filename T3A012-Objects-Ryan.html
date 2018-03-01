@@ -1,0 +1,144 @@
+<script>
+document.myClass = new Array()
+document.myCounter = 0
+var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    x = w.innerWidth || e.clientWidth || g.clientWidth,
+    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+// set the object
+function myStudent(myAge, myName, myImg){
+   this.myStudentAge = myAge
+   this.myStudentName = myName
+   this.myStudentImage = myImg
+   this.myInfo = mystudentInfo
+      this.myReturn = myReturnInfo
+}
+
+function mystudentInfo(){
+   document.getElementById('my1').innerHTML = ' My name is ' + this.myStudentName + ' I am ' + this.myStudentAge +' years old. Here is my picture <img width=70 src ='+this.myStudentImage+'><br>'
+}
+
+
+function myReturnInfo(){
+   return ' My name is ' + this.myStudentName + ' I am ' + this.myStudentAge +' years old. Here is my picture <img width=70 src ='+this.myStudentImage+'><br>'
+}
+
+
+
+function ecreate(c,x,y,w){
+console.log(c+x+y+w);
+
+
+enemy[count] = {"c":c,"x":x,"y":y,"w":w};
+count++;
+}
+var count = 0;
+enemy = new Array();
+
+function loop(){
+setTimeout(function(){
+	var c=document.getElementById("Canvas");
+	var ctx=c.getContext("2d");
+//console.log('tick');
+ctx.clearRect(0, 0, c.width, c.height);
+for(i=0;i<count;i++){
+
+	//clear
+	
+	
+	
+	ctx.beginPath();	
+	ctx.strokeStyle= enemy[i].c;
+	//player
+	ctx.rect(enemy[i].x++,enemy[i].y++,enemy[i].w,enemy[i].w);
+
+
+	
+	//draw loop
+	ctx.stroke();
+	ctx.closePath();
+
+//console.log(count);
+}
+
+loop();
+},100);
+}
+
+
+</script>
+
+<body onload="loop();">
+
+<h3>Instructions:</h3>
+Pass: Make several more buttons that add other objects.<br>
+Excellent: Use local storage to save all object data as a local database<br>
+
+<input type=button value="set Fred" onClick="{
+   document.myCounter ++ 
+   document.myClass[document.myCounter] = new myStudent('17','Fred','http://www.clker.com/cliparts/r/6/N/B/r/E/blue-stick-man-hi.png')
+   document.myClass[document.myCounter].myInfo()
+}"><br>
+
+<input type=button value="set Mary" onClick="{
+   document.myCounter ++
+   document.myClass[document.myCounter] = new myStudent('19','Mary','http://www.clker.com/cliparts/D/u/J/o/g/v/light-pink-stick-man-hi.png')
+   document.myClass[document.myCounter].myInfo()
+}"><br>
+
+
+
+
+<input type=button value="set Dynamic" onClick="{
+   document.myCounter ++
+   document.myClass[document.myCounter] = new myStudent(document.all.myAge.value, document.all.myName.value, document.all.myPic.value)
+   document.myClass[document.myCounter].myInfo()
+}"><br>
+
+
+<input type=text value=18 id="myAge">
+<input type=text value=Joe id="myName">
+<input type=text size=70 value="http://www.clker.com/cliparts/d/e/d/5/12571196281934263158goat-th.png" id="myPic"><br>
+
+
+<br>
+
+
+
+<hr>
+
+<input type=button value="show database" onClick="{
+   var temp = ''
+   for (myLoop=1; myLoop <= document.myCounter; myLoop++){
+     temp += '#'+myLoop + ' ' + document.myClass[myLoop].myReturn()
+
+   }
+   document.getElementById('my1').innerHTML = temp
+}">
+
+<hr>
+
+<div id="my1">results go here</div> 
+
+<br><br><hr>
+<h1> My work </h1>
+<hr><br><br>
+
+Using objects to create an enemy 
+<br>
+color in hex<input id='color' value="#" > </input><br>
+x<input id='x'> </input><br>
+y<input id='y' > </input><br>
+width<input id='w'> </input><br>
+<button onClick="ecreate(document.getElementById('color').value,document.getElementById('x').value,document.getElementById('y').value,document.getElementById('w').value)">create enemy </button>
+<br>
+
+<canvas id="Canvas" width="800" height="800" style="border:1px solid #d3d3d3;" tabindex="1">
+
+<br>At the bottom of every page make sure you include the following button:<br>
+
+<input type=button value="Back" style="font-size:25px" onclick="{window.history.back()}"><br><br>
+</body>
