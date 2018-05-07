@@ -26,7 +26,7 @@ var gravity = 0.5;
 var grounded = false;
 var jumped = false;
 var upt = 0.1;
-var speed = 0.5;
+var speed = 0.3;
 var levelselector = 1;
 var currentLevel = tmap1;
 var still = false;
@@ -87,28 +87,29 @@ function move() {
     if (state.pressedKeys.left) {
 
                 checkMove(player.x, player.y - 0.5, tileSize, tileSize, 'down');
-        console.log(velocityx);
+       // console.log(velocityx);
         checkMove(player.x, player.y - 0.5, tileSize, tileSize, 'left');
-        if (velocityx > -15) {
+        if (velocityx > -10) {
             velocityx -= speed;
         }
     }
     if (state.pressedKeys.right) {
                 checkMove(player.x, player.y - 0.5, tileSize, tileSize, 'down');
         checkMove(player.x, player.y - 0.5, tileSize, tileSize, 'right');
-        if (velocityx < 15) {
+        if (velocityx < 10) {
             velocityx += speed;
         }
     }
     if (state.pressedKeys.up) {
+        falling = false;
         checkMove(player.x, player.y - 0.5, tileSize, tileSize, 'up');
         //velocityy -= 0.5;
         checkMove(player.x, player.y - 0.5, tileSize, tileSize, 'down');
-
+        
         if (!jumped) {
             gravity = 0;
             upt += 0.2;
-            velocityy = -4 * upt;
+            velocityy = -3 * upt;
 
 
             if (upt > 3) {
@@ -164,41 +165,56 @@ function move() {
 
 function checkMove(px, py, pw, ph, pd) {
     
-     console.log('collide check' + pd);
+    //console.log('collide check' + pd);
     for (var y = 0; y < currentLevel.length; y += 1) {
         for (var x = 0; x < currentLevel[y].length; x += 1) {
 
             var tileX = x * tileSize;
             var tileY = y * tileSize;
 
-            if (currentLevel[y][x] === 1) {
-                if (px < tileX + tileSize && px + (pw / 2) + 5 > tileX && py < tileY + tileSize && py + (ph / 2) + 1> tileY) {
-                    if (pd === 'right' && px + (pw / 2) > tileX) {
+            
+                
+                 if (currentLevel[y][x] === 1) {
+                     if (px < tileX + tileSize && px + (pw / 2)  > tileX && py < tileY + tileSize && py + (ph / 2) + 1> tileY) {
+                    if (pd === 'right' && px + pw  > tileX) {
+                        player.x -= velocityx;
                         velocityx = 0;
-                        player.x = tileX - (pw / 2) - 1;
-                        console.log('right');
-                        return true;
-                    }
-                    if (pd === 'left' && px < tileX + tileSize) {
-                        velocityx = 0;
-                        player.x = tileX + tileSize + 0.5;
-                        console.log('left');
-                    }
-                    /* if (pd === 'up' && py+ph > tileY - tileSize) {
-                          falling = false;
-                         velocityy = 0;
-                       player.y = tileY;
-                       console.log('up');
+                       // player.x = tileX - pw/2 - 1;
                       
-                     }else{
-                         falling = true;
+                       // console.log('right');
+             
+                     
+                    }
+                    if (pd === 'left' && px  < tileX + tileSize ) {
+                        player.x -= velocityx;
+                        velocityx = 0;
+                       // player.x = tileX + pw+ 1;
+                        //console.log('left');
+                        
+                
+                    }
+                     if (pd === 'up' && py+ph > tileY ) {
+                         if(velocityy < 0){
+                             
+                       
+                        
+                         velocityy = 0;
+                         
+                       player.y = tileY + tileSize;
+                       //console.log('up');
+                         }
                      }
                      
-                    */
                     
+                   
                     if (pd === 'down' && py - 1 < tileY) {
+                        gravity = 0;
                         jumped = false;
-                        if(velocityy>0.6){
+                        falling = false;                    
+                        velocityy = 0;
+                        player.y = tileY - player.h - 1;
+                        
+                       /* if(velocityy>0.6){
                         if (falling) {
                             velocityy = 0;
                             player.y = tileY - player.h - 1;
@@ -206,36 +222,34 @@ function checkMove(px, py, pw, ph, pd) {
                         
                         console.log('down');
                         falling = false;
-                        }
+                        }*/
                     }
                      
-                } else{
-                    
-                    falling = true;
-                    
                 }
+                 
 
+            }else{
+                   if (px < tileX + tileSize && px + (pw / 2)  > tileX && py < tileY + tileSize && py + (ph / 2) + 1> tileY) {
+           
+                        falling = true;
+                    
+                       
+                   }
             }
+            
         }
     }
 }
 
 function loop() {
-    if(player.x > cwidth){
-        player.y = 560;
-        player.x = 5;
-        levelselector += 1;
-        mapx = 'tmap' + levelselector;
-        console.log('clear');
-        currentLevel.length = 0;                  // Clear contents
-        currentLevel.push.apply(currentLevel, eval(mapx));  // Append new contents
-        
-    }
+        setTimeout(function () {
+  //console.log(velocityx);
     if (falling) {
+        //console.log('fall loop');
         gravity = 0.5;
         velocityy = velocityy + gravity;
         if(velocityy > 0.5 || velocityy < -0.5){
-            console.log(velocityy);
+           // console.log(velocityy);
             
         checkMove(player.x, player.y + 0.5, tileSize, tileSize, 'down');
         checkMove(player.x, player.y - 0.5, tileSize, tileSize, 'up');
@@ -254,8 +268,42 @@ function loop() {
 
     //console.log('test');
     draw();
-    window.requestAnimationFrame(loop);
-
+    //window.requestAnimationFrame(loop);
+   if(player.y < 5){
+       velocityy = 0;
+   }
+  if(player.x > cwidth){
+       if(levelselector > 9 ){
+       location.href = "www.google.com";
+       }else{
+        player.y = 560;
+        player.x = 5;
+        levelselector += 1;
+        mapx = 'tmap' + levelselector;
+       // console.log('clear');
+        currentLevel.length = 0;                  // Clear contents
+        currentLevel.push.apply(currentLevel, eval(mapx));  // Append new contents
+       }
+    }
+     if(player.x < 0){
+      
+        if(levelselector != 1){
+             player.y = 560;
+        player.x = cwidth -25;
+            levelselector -= 1; 
+            mapx = 'tmap' + levelselector;
+       // console.log(mapx)
+        //console.log('clear');
+        currentLevel.length = 0;                  // Clear contents
+        currentLevel.push.apply(currentLevel, eval(mapx));  // Append new contents
+        }
+       
+        
+        
+    }
+  
+    loop();
+    }, 16);
 }
 
 function draw() {
