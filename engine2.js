@@ -30,6 +30,11 @@ var speed = 0.3;
 var levelselector = 1;
 var currentLevel = tmap1;
 var still = false;
+var mousePos = {
+x:0,
+y:0
+};
+
 var state = {
 
     pressedKeys: {
@@ -41,8 +46,85 @@ var state = {
     }
 };
 
+function getMousePos(canvas, event) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+      x: event.clientX - rect.left ,
+      y: event.clientY - rect.top
+    };
+}
+
+function checkclick(c,event){
+
+iy = 1;
+ic = 0;
+var mousepos;
+mousepos = getMousePos(c,event);
+
+console.log('test ' + mousepos.x + ' ' + mousepos);
+for(i=1;i<20;i++){
+
+ic++;
+ix = ic * 300;
+
+console.log(mousepos.x + ' ' + mousepos);
+if(ic%4 == 0){	
+
+iy += 250;
+ic = 0;
+}
+}
 
 
+} 
+
+
+
+
+
+function menu(){
+console.log('menu');
+
+
+    document.getElementById('Canvas').width = cwidth;
+    document.getElementById('Canvas').height = cheight;
+
+  var c = document.getElementById("Canvas");
+    var ctx = c.getContext("2d");
+
+
+      c.addEventListener('mousemove', function(evt) {
+         mousePos = getMousePos(c, evt);
+	c.addEventListener('mousedown', function(evt) {
+       	console.log(mousePos);
+	
+
+        }, false);
+      }, false);
+    ctx.clearRect(0, 0, c.width, c.height);
+iy = 1;
+ic = 0;
+for(i=1;i<20;i++){
+
+ic++;
+ix = ic * 300;
+
+ctx.font = "32px Arial";
+ctx.fillText(i,ix,iy+ 100);
+ctx.rect(ix-(16+32)/2, iy+ 100 - (64+32)/2, 64, 64);
+ctx.stroke();
+ctx.closePath();
+if(ic%4 == 0){	
+console.log(ix);
+iy += 250;
+ic = 0;
+}
+}
+
+
+
+
+}
 
 var keyMap = {
     68: 'right',
@@ -270,6 +352,34 @@ function checkMove(px, py, pw, ph, pd) {
     }
 }
 
+function ploop(x,x2,y,i,w){
+ setTimeout(function() {
+if(x+i > x2-w){
+i =0;
+
+currentLevel[y][x2-1] =0;
+
+}
+if(x+i == x){
+currentLevel[y][x2] =0;
+}
+console.log('ploop');
+console.log('test');
+currentLevel[y][x+i] =1;
+currentLevel[y][x+i-1] =0;
+
+
+
+
+	i++;
+
+    ploop(x,x2,y,i,w);
+    }, 400);
+
+
+}
+
+
 function loop() {
     setTimeout(function() {
         //console.log(velocityx);
@@ -302,6 +412,10 @@ function loop() {
             velocityy = 0;
         }
         if (player.x > cwidth) {
+	    if (levelselector == 6) {	
+		 ploop(5,10,15,0,3);
+
+		}
             if (levelselector > 9) {
                 location.href = "www.google.com";
             } else {
