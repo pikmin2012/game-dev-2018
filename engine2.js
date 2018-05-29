@@ -31,8 +31,8 @@ var levelselector = 1;
 var currentLevel = tmap1;
 var still = false;
 var mousePos = {
-x:0,
-y:0
+    x: 0,
+    y: 0
 };
 
 var state = {
@@ -42,84 +42,140 @@ var state = {
         right: false,
         up: false,
         down: false,
-	reset:false
+        reset: false
     }
 };
 
 function getMousePos(canvas, event) {
     var rect = canvas.getBoundingClientRect();
+
     return {
-      x: event.clientX - rect.left ,
-      y: event.clientY - rect.top
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
     };
 }
 
-function checkclick(c,event){
+function checkclick(c, event) {
 
-iy = 1;
-ic = 0;
-var mousepos;
-mousepos = getMousePos(c,event);
+    iy = 1;
+    ic = 0;
+    var mousepos;
+    mousepos = getMousePos(c, event);
 
-console.log('test ' + mousepos.x + ' ' + mousepos);
-for(i=1;i<20;i++){
+    console.log('test ' + mousepos.x + ' ' + mousepos.y);
+    for (i = 1; i < 20; i++) {
 
-ic++;
-ix = ic * 300;
+        ic++;
+        ix = ic * 300;
 
-console.log(mousepos.x + ' ' + mousepos);
-if(ic%4 == 0){	
+        //console.log(mousepos.x + ' ' + mousepos);
+        //console.log(ix + ' ' + iy);
 
-iy += 250;
-ic = 0;
+        if (mousepos.x < ix + (64 + 32) && mousepos.x + (64 + 32) > ix && mousepos.y < iy + 128 && mousepos.y > iy + 32) {
+            console.log('level');
+            console.log('done ' + ix + ' ' + iy);
+            console.log(i);
+
+            if (i == 1) {
+                init();
+                player.y = 560;
+                player.x = 5;
+            } else {
+                levelselector = i;
+                mapx = 'tmap' + levelselector;
+                // console.log(mapx)
+                //console.log('clear');
+                currentLevel.length = 0; // Clear contents
+                currentLevel.push.apply(currentLevel, eval(mapx)); // Append new contents
+                player.y = 560;
+                player.x = 5;
+
+                init();
+            }
+        }
+
+
+        //console.log(ix + ' ' + iy);
+        if (ic % 4 == 0) {
+
+            iy += 250;
+            ic = 0;
+        }
+    }
+
+
 }
-}
-
-
-} 
 
 
 
 
-
-function menu(){
-console.log('menu');
+function menu() {
+    console.log('menu');
 
 
     document.getElementById('Canvas').width = cwidth;
     document.getElementById('Canvas').height = cheight;
 
-  var c = document.getElementById("Canvas");
+    var c = document.getElementById("Canvas");
     var ctx = c.getContext("2d");
 
+    c.addEventListener('mousedown', function(evt) {
+        checkclick(c, evt);
 
-      c.addEventListener('mousemove', function(evt) {
-         mousePos = getMousePos(c, evt);
-	c.addEventListener('mousedown', function(evt) {
-       	console.log(mousePos);
-	
 
-        }, false);
-      }, false);
+    }, false);
+    c.addEventListener('mousemove', function(evt) {
+        mousePos = getMousePos(c, evt);
+
+    }, false);
     ctx.clearRect(0, 0, c.width, c.height);
-iy = 1;
-ic = 0;
-for(i=1;i<20;i++){
+    iy = 1;
+    ic = 0;
 
-ic++;
-ix = ic * 300;
 
-ctx.font = "32px Arial";
-ctx.fillText(i,ix,iy+ 100);
-ctx.rect(ix-(16+32)/2, iy+ 100 - (64+32)/2, 64, 64);
-ctx.stroke();
-ctx.closePath();
-if(ic%4 == 0){	
-console.log(ix);
-iy += 250;
-ic = 0;
+
+
 }
-}
+
+
+function levelselect() {
+    console.log('menu');
+
+
+    document.getElementById('Canvas').width = cwidth;
+    document.getElementById('Canvas').height = cheight;
+
+    var c = document.getElementById("Canvas");
+    var ctx = c.getContext("2d");
+
+    c.addEventListener('mousedown', function(evt) {
+        checkclick(c, evt);
+
+
+    }, false);
+    c.addEventListener('mousemove', function(evt) {
+        mousePos = getMousePos(c, evt);
+
+    }, false);
+    ctx.clearRect(0, 0, c.width, c.height);
+    iy = 1;
+    ic = 0;
+    for (i = 1; i < 20; i++) {
+
+        ic++;
+        ix = ic * 300;
+
+        ctx.font = "32px Arial";
+        ctx.fillText(i, ix, iy + 100);
+        ctx.rect(ix - (16 + 32) / 2, iy + 100 - (48), 64, 64);
+        ctx.stroke();
+        ctx.closePath();
+        if (ic % 4 == 0) {
+            console.log(ix);
+            iy += 250;
+            ic = 0;
+        }
+    }
 
 
 
@@ -154,8 +210,15 @@ function init() {
     document.getElementById('Canvas').width = cwidth;
     document.getElementById('Canvas').height = cheight;
 
+    document.getElementById('Canvas').removeEventListener("mousedown", function(evt) {
+        checkclick(c, evt);
 
 
+    }, false);
+    document.getElementById('Canvas').removeEventListener("mousemove", function(evt) {
+        mousePos = getMousePos(c, evt);
+
+    }, false);
 
     loop();
 
@@ -175,7 +238,7 @@ function move() {
         checkMove(player.x, player.y - 0.5, tileSize, tileSize, 'left');
         if (velocityx > -10) {
             velocityx -= speed;
-		
+
         }
     }
     if (state.pressedKeys.right) {
@@ -213,10 +276,10 @@ function move() {
 
     }
 
-if (state.pressedKeys.reset) {
-   player.y = 560;
-                            player.x = 5;
-}
+    if (state.pressedKeys.reset) {
+        player.y = 560;
+        player.x = 5;
+    }
 
 
     if (state.pressedKeys.down) {
@@ -272,7 +335,7 @@ function checkMove(px, py, pw, ph, pd) {
                         // player.x = tileX - pw/2 - 1;
 
                         // console.log('right');
-	if (currentLevel[y][x] === 2) {
+                        if (currentLevel[y][x] === 2) {
                             player.y = 560;
                             console.log('check ded');
                             player.x = 5;
@@ -281,12 +344,12 @@ function checkMove(px, py, pw, ph, pd) {
 
                     }
                     if (pd === 'left' && px < tileX + tileSize) {
- 
+
                         player.x -= velocityx;
                         velocityx = 0;
                         // player.x = tileX + pw+ 1;
                         //console.log('left');
-	if (currentLevel[y][x] === 2) {
+                        if (currentLevel[y][x] === 2) {
                             player.y = 560;
                             console.log('check ded');
                             player.x = 5;
@@ -297,18 +360,18 @@ function checkMove(px, py, pw, ph, pd) {
                     if (pd === 'up' && py + ph > tileY) {
 
                         if (velocityy < 0) {
-				
+
 
 
                             velocityy = 0;
 
                             player.y = tileY + tileSize;
                             //console.log('up');
- 				if (currentLevel[y][x] === 2) {
-                            player.y = 560;
-                            console.log('check ded');
-                            player.x = 5;
-                        }
+                            if (currentLevel[y][x] === 2) {
+                                player.y = 560;
+                                console.log('check ded');
+                                player.x = 5;
+                            }
                         }
                     }
 
@@ -352,32 +415,6 @@ function checkMove(px, py, pw, ph, pd) {
     }
 }
 
-function ploop(x,x2,y,i,w){
- setTimeout(function() {
-if(x+i > x2-w){
-i =0;
-
-currentLevel[y][x2-1] =0;
-
-}
-if(x+i == x){
-currentLevel[y][x2] =0;
-}
-console.log('ploop');
-console.log('test');
-currentLevel[y][x+i] =1;
-currentLevel[y][x+i-1] =0;
-
-
-
-
-	i++;
-
-    ploop(x,x2,y,i,w);
-    }, 400);
-
-
-}
 
 
 function loop() {
@@ -412,10 +449,7 @@ function loop() {
             velocityy = 0;
         }
         if (player.x > cwidth) {
-	    if (levelselector == 6) {	
-		 ploop(5,10,15,0,3);
 
-		}
             if (levelselector > 9) {
                 location.href = "www.google.com";
             } else {
@@ -446,7 +480,7 @@ function loop() {
         }
 
         loop();
-    }, 12);
+    }, 14);
 }
 
 function draw() {
