@@ -1,0 +1,186 @@
+<h2 align=center> Console commands by Fred</h2> 
+
+ctrl-shift-i to activate console<br><br> 
+
+  
+
+
+
+
+Refernce info at this link 
+
+<a href="https://medium.com/appsflyer/10-tips-for-javascript-debugging-like-a-pro-with-console-7140027eb5f6">https://medium.com/appsflyer/10-tips-for-javascript-debugging-like-a-pro-with-console-7140027eb5f6</a><br> 
+
+  
+
+<br> 
+
+or <br> 
+
+<a href="http://devtoolsecrets.com/secret/console-log-info-warn-error.html">http://devtoolsecrets.com/secret/console-log-info-warn-error.html</a><br> 
+
+  
+
+  
+
+  
+
+  
+
+  <script>
+var a  = 0;
+
+
+</script>
+
+  
+
+<input type=button value="console.log" onclick="{ 
+
+   console.log('hello console');
+
+}"><br> 
+
+    
+
+<input type=button value="console.warn" onclick="{ 
+
+   console.warn('warn console');
+
+}"><br> 
+
+  
+
+  
+
+<input type=button value="console.error" onclick="{ 
+
+   console.error('error console');
+
+}"><br> 
+
+  
+
+  <input type=button value="increase var a and log" onclick="{ 
+a++;
+console.log(a);
+
+   
+
+}"><br> 
+
+  <input type=button value="console.trace" onclick="{ 
+console.trace('trace');
+
+   
+
+}"><br> 
+
+  <input type=button value="console.time" onclick="{ 
+console.time();
+for (i = 0; i < 100000; i++) {
+ a + i;
+a*i;
+a-(i + 50);
+}
+console.timeEnd();
+
+   
+
+}"><br> 
+  
+  
+  <input type=button value="console.assert" onclick="{ 
+console.assert(document.getElementById("demo"), "You have no element with ID 'demo'");
+
+   
+
+}"><br> 
+
+  <input type=button value="console.group" onclick="{ 
+console.log('Hello world!');
+console.group();
+console.log('Hello again, this time inside a group!');
+console.groupEnd();
+
+}"><br> 
+
+
+    <input type=button value="console.count" onclick="{ 
+console.count('count');
+
+   
+
+}"><br> 
+
+    <input type=button value="console.clear" onclick="{ 
+console.clear()
+
+   
+
+}"><br> 
+
+
+    <input type=button value="console.table" onclick="{ 
+console.table(['this', 'is a', 'table']);
+   
+
+}"><br> 
+
+  
+
+  
+
+  
+
+  
+
+You make working buttons for the following Console commands  
+
+<ol> 
+
+  
+
+<li>console.info 
+
+<li>console.warn 
+
+<li>console.error 
+
+  
+
+<li> show variables not String substitutions 
+
+  
+
+<li>console.trace() 
+
+<li>console.time() && console.timeEnd() 
+
+<li>console.memory 
+
+  
+
+<li>console.profile(‘profileName’) & console.profileEnd(‘profileName’) 
+
+<li>console.assert(false, “Log me!”) 
+
+<li>console.group(‘group’) & console.groupEnd(‘group’ 
+
+  
+
+<li>console.count() 
+
+<li>console.clear() 
+
+<li>console.table() 
+
+  
+
+  
+
+</ol> 
+
+
+
+<div id="out"></div>
