@@ -450,8 +450,8 @@ function loop() {
         }
         if (player.x > cwidth) {
 
-            if (levelselector > 9) {
-                location.href = "www.google.com";
+            if (levelselector > 6) {
+                location.href = "https://ranorman20.github.io/game-dev-2018/New%20project/";
             } else {
                 player.y = 560;
                 player.x = 5;
