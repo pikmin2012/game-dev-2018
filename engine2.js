@@ -1,3 +1,4 @@
+
 var player = {
     w: 16,
     h: 16,
@@ -55,6 +56,39 @@ function getMousePos(canvas, event) {
     };
 }
 
+
+function mmcheck(c, event) {
+
+    iy = 1;
+    ic = 0;
+    var mousepos;
+    mousepos = getMousePos(c, event);
+
+    console.log('test ' + mousepos.x + ' ' + mousepos.y);
+ 
+ 
+ if (mousepos.x <(c.width/2) + 250 && mousepos.x  > (+( c.width/2) - 250) && mousepos.y < 310 && mousepos.y > 250){
+//ctx.rect((c.width/2) - 250,(c.height/2)-250,500,64);
+ c.removeEventListener('mousedown', function(evt) {
+       mmcheck(c, evt);
+
+
+    }, false);
+c.removeEventListener('mousemove', function(evt) {
+        mousePos = getMousePos(c, evt);
+
+    }, false);
+levelselect();
+
+
+}
+}
+
+
+
+
+
+
 function checkclick(c, event) {
 
     iy = 1;
@@ -81,6 +115,7 @@ function checkclick(c, event) {
                 player.y = 560;
                 player.x = 5;
             } else {
+		
                 levelselector = i;
                 mapx = 'tmap' + levelselector;
                 // console.log(mapx)
@@ -89,6 +124,22 @@ function checkclick(c, event) {
                 currentLevel.push.apply(currentLevel, eval(mapx)); // Append new contents
                 player.y = 560;
                 player.x = 5;
+
+
+c.removeEventListener('mousedown', function(evt) {
+        checkclick(c, evt);
+
+
+    }, false);
+c.removeEventListener('mousemove', function(evt) {
+        mousePos = getMousePos(c, evt);
+
+    }, false);
+
+
+
+
+
 
                 init();
             }
@@ -120,7 +171,7 @@ function menu() {
     var ctx = c.getContext("2d");
 
     c.addEventListener('mousedown', function(evt) {
-        checkclick(c, evt);
+       mmcheck(c, evt);
 
 
     }, false);
@@ -133,7 +184,10 @@ function menu() {
     ic = 0;
 
 
-
+	ctx.rect((c.width/2) - 250,(c.height/2)-250,500,64);
+	ctx.font = "64px Arial";
+        ctx.fillText('start', (c.width/2) - 250+128+55, (c.height/2)-250+55);
+	ctx.stroke();
 
 }
 
@@ -450,8 +504,8 @@ function loop() {
         }
         if (player.x > cwidth) {
 
-            if (levelselector > 6) {
-                location.href = "https://ranorman20.github.io/game-dev-2018/New%20project/";
+            if (levelselector > 9) {
+                location.href = "www.google.com";
             } else {
                 player.y = 560;
                 player.x = 5;
@@ -480,7 +534,7 @@ function loop() {
         }
 
         loop();
-    }, 14);
+    }, 50);
 }
 
 function draw() {
