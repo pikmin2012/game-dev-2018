@@ -534,7 +534,7 @@ function loop() {
         }
 
         loop();
-    }, 50);
+    }, 25);
 }
 
 function draw() {
