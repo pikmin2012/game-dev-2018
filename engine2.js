@@ -505,7 +505,7 @@ function loop() {
         if (player.x > cwidth) {
 
             if (levelselector > 9) {
-                location.href = "www.google.com";
+                //location.href = "www.google.com";
             } else {
                 player.y = 560;
                 player.x = 5;
